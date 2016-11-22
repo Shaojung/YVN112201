@@ -11,6 +11,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -65,5 +68,25 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void click3(View v)
+    {
+        InputStream is = getResources().openRawResource(R.raw.aa);
+        InputStreamReader reader = null;
+        StringBuilder sb = new StringBuilder();
+        try {
+            reader = new InputStreamReader(is, "UTF-8");
+            char[] buffer = new char[1];
+            while(reader.read(buffer) != -1)
+            {
+                sb.append(new String(buffer));
+            }
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Log.d("DATA", sb.toString());
     }
 }
