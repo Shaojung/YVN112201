@@ -89,4 +89,21 @@ public class MainActivity extends AppCompatActivity {
         }
         Log.d("DATA", sb.toString());
     }
+    public void click4(View v)
+    {
+        File f1 = getExternalFilesDir(null);
+        File writeFile = new File(f1, "mydata2.txt");
+        try {
+
+            FileWriter fw = new FileWriter(writeFile.getAbsoluteFile());
+            fw.write("Hello This is data2");
+            fw.flush();
+            fw.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
