@@ -8,6 +8,7 @@ import android.view.View;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -39,6 +40,26 @@ public class MainActivity extends AppCompatActivity {
             fw.flush();
             fw.close();
 
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void click2(View v)
+    {
+        File f1 = getFilesDir();
+        File readFile = new File(f1, "mydata2.txt");
+        try {
+            FileReader fr = new FileReader(readFile.getAbsoluteFile());
+            StringBuilder sb = new StringBuilder();
+            char[] ch = new char[1];
+            while(fr.read(ch) != -1)
+            {
+                sb.append(new String(ch));
+            }
+            Log.d("DATA", sb.toString());
+            fr.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
