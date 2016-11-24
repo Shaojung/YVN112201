@@ -1,6 +1,9 @@
 package com.example.yvtc.yvn112201;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +17,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -108,6 +114,19 @@ public class MainActivity extends AppCompatActivity {
     }
     public void click5(View v)
     {
+        int permission = ActivityCompat.checkSelfPermission(this,
+                WRITE_EXTERNAL_STORAGE);
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                    this,
+                    new String[] {WRITE_EXTERNAL_STORAGE,
+                            READ_EXTERNAL_STORAGE},
+                        123
+                    );
+            } else {
+
+        }
+
         File f1 = Environment.getExternalStorageDirectory();
         File f2 = new File(f1, "mypath");
         if (f2.mkdir())
