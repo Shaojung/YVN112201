@@ -106,4 +106,30 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+    public void click5(View v)
+    {
+        File f1 = Environment.getExternalStorageDirectory();
+        File f2 = new File(f1, "mypath");
+        if (f2.mkdir())
+        {
+            Log.d("FILE", "建立成功");
+        }
+        else
+        {
+            Log.d("FILE", "建立失敗");
+        }
+        File writeFile = new File(f2, "mydata2.txt");
+        try {
+
+            FileWriter fw = new FileWriter(writeFile.getAbsoluteFile());
+            fw.write("Hello This is data2");
+            fw.flush();
+            fw.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
