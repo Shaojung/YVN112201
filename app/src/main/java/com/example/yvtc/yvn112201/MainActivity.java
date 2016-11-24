@@ -3,6 +3,7 @@ package com.example.yvtc.yvn112201;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -124,9 +125,26 @@ public class MainActivity extends AppCompatActivity {
                         123
                     );
             } else {
-
+            writeExternal();
         }
 
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 123)
+        {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+            {
+                writeExternal();
+            }
+        }
+    }
+
+    void writeExternal()
+    {
         File f1 = Environment.getExternalStorageDirectory();
         File f2 = new File(f1, "mypath");
         if (f2.mkdir())
